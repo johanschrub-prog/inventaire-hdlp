@@ -1,4 +1,4 @@
-alert("APP JS CHARGE");
+alert("APP JS CHARGE lol");
 let currentTab = "";
 let currentIndex = 0;
 let inventaire = {};
