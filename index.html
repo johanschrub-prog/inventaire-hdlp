@@ -136,6 +136,39 @@ border-radius:12px;
 <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 
 <script src="https://unpkg.com/html5-qrcode"></script>
+<div id="fenetreAssociation"
+style="
+display:none;
+position:fixed;
+top:10%;
+left:5%;
+right:5%;
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 0 20px rgba(0,0,0,.3);
+z-index:9999;
+">
+
+<h3>Associer un code-barres</h3>
+
+<div id="codeInconnu"></div>
+
+<input
+id="rechercheProduit"
+placeholder="Recherche produit"
+oninput="chercherProduitAssociation()">
+
+<div
+id="listeProduits"
+style="
+margin-top:10px;
+max-height:300px;
+overflow:auto;
+">
+</div>
+
+</div>
 
 <script src="app.js"></script>
 
