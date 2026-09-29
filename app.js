@@ -1,72 +1,220 @@
-const categories = [
+let currentTab = "";
+let currentIndex = 0;
+let inventaire = {};
 
-"INVENTAIRE HDLP",
-"INVENTAIRE CONGELATEUR PDJ",
-"INVENTAIRE ECONOMAT PDJ",
-"INVENTAIRE REFREGIRATEUR PDJ",
-"INVENTAIRE SEMINAIRE",
-"INVENTAIRE CAVE BAR",
-"INVENTAIRE CAVE SOFT",
-"INVENTAIRE CAVE MINI BAR",
-"INVENTAIRE CAVE SEMINAIRE",
-"INVENTAIRE BOUTIQUE",
-"INVENTAIRE ARRIERE BAR",
-"INVENTAIRE DEVANT BAR",
-"INVENTAIRE BAS BAR",
-"INVENTAIRE RCLP",
-"INVENTAIRE RCLP BAR",
-"INVENTAIRE CAVE ALCOOL",
-"INVENTAIRE CAVE VIN"
+async function charger(){
 
-];
+    const r =
+    await fetch("inventaire.json");
 
-let currentTab = categories[0];
+    inventaire =
+    await r.json();
 
-let data = {};
+    currentTab =
+    Object.keys(inventaire)[0];
 
-categories.forEach(cat=>{
+    creerOnglets();
 
-data[cat] = [];
-
-});
-
-function createTabs(){
-
-let html = "";
-
-categories.forEach(cat=>{
-
-html += `
-<button
-class="tab ${
-cat===currentTab
-? "active"
-: ""
-}"
-onclick="changeTab('${cat}')">
-
-${cat}
-
-</button>
-`;
-
-});
-
-document
-.getElementById("tabs")
-.innerHTML = html;
+    afficherArticle();
 
 }
 
-function changeTab(tab){
+function creerOnglets(){
 
-currentTab = tab;
+    let html = "";
 
-createTabs();
+    Object.keys(inventaire)
+    .forEach(cat=>{
 
-render();
+        html += `
+        <button
+        class="tab ${
+            cat===currentTab
+            ? "active"
+            : ""
+        }"
+        onclick="changerOnglet('${cat}')">
+
+        ${cat}
+
+        </button>
+        `;
+
+    });
+
+    document
+    .getElementById("tabs")
+    .innerHTML = html;
 
 }
 
-createTabs();
-``
+function changerOnglet(cat){
+
+    currentTab = cat;
+    currentIndex = 0;
+
+    creerOnglets();
+
+    afficherArticle();
+
+}
+
+function afficherArticle(){
+
+    const produit =
+    inventaire[currentTab][currentIndex];
+
+    if(!produit) return;
+
+    document
+    .getElementById("contenu")
+    .innerHTML = `
+
+    <div class="card">
+
+        <div>
+        Ordre : ${produit.ordre}
+        </div>
+
+        <h2>
+        ${produit.code}
+        </h2>
+
+        <h3>
+        ${produit.article}
+        </h3>
+
+        <div>
+
+        Paquets
+
+        <input
+        id="paquets"
+        type="number"
+        value="${
+            produit.paquets || ""
+        }">
+
+        </div>
+
+        <div>
+
+        Pièces
+
+        <input
+        id="pieces"
+        type="number"
+        value="${
+            produit.pieces || ""
+        }">
+
+        </div>
+
+        <div class="nav">
+
+            <button onclick="precedent()">
+            ◀
+            </button>
+
+            <button onclick="valider()">
+            ✅
+            </button>
+
+            <button onclick="suivant()">
+            ▶
+            </button>
+
+        </div>
+
+    </div>
+    `;
+
+}
+
+function valider(){
+
+    let produit =
+    inventaire[currentTab][currentIndex];
+
+    produit.paquets =
+    parseInt(
+        document
+        .getElementById("paquets")
+        .value || 0
+    );
+
+    produit.pieces =
+    parseInt(
+        document
+        .getElementById("pieces")
+        .value || 0
+    );
+
+    suivant();
+
+}
+
+function suivant(){
+
+    if(
+        currentIndex <
+        inventaire[currentTab].length - 1
+    ){
+
+        currentIndex++;
+
+    }
+
+    afficherArticle();
+
+}
+
+function precedent(){
+
+    if(currentIndex > 0){
+
+        currentIndex--;
+
+    }
+
+    afficherArticle();
+
+}
+
+function rechercher(){
+
+    const texte =
+    document
+    .getElementById("search")
+    .value
+    .toLowerCase();
+
+    const index =
+    inventaire[currentTab]
+    .findIndex(
+
+        p =>
+
+        p.article
+        .toLowerCase()
+        .includes(texte)
+
+        ||
+
+        p.code
+        .toLowerCase()
+        .includes(texte)
+
+    );
+
+    if(index >= 0){
+
+        currentIndex = index;
+
+        afficherArticle();
+
+    }
+
+}
+
+charger();
