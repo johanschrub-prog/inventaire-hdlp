@@ -215,29 +215,27 @@ function afficherArticle(){
         Paquets
 
        <input
+<input
 id="paquets"
 type="number"
-enterkeyhint="go"
-value="${produit.paquets || ""}"
-onkeydown="if(event.key==='Enter'){valider();}">
+enterkeyhint="next"
+value="${
+    produit.paquets || ""
+}"
+onkeydown="if(event.key==='Enter'){
+document.getElementById('pieces').focus();
+}">
 
-        </div>
-
-        <div>
-
-        Pièces
-
-       <input
+<input
 id="pieces"
 type="number"
 enterkeyhint="go"
-value="${produit.pieces || ""}"
-onkeydown="if(event.key==='Enter'){valider();}">
-
-        </div>
-
-        <div class="nav">
-
+value="${
+    produit.pieces || ""
+}"
+onkeydown="if(event.key==='Enter'){
+valider();
+}">
             <button onclick="precedent()">
             ◀
             </button>
@@ -276,12 +274,28 @@ function valider(){
         .value || 0
     );
 
-    localStorage.setItem(
-        "inventaireHDLP",
-        JSON.stringify(inventaire)
+   localStorage.setItem(
+    "inventaireHDLP",
+    JSON.stringify(inventaire)
+);
+
+suivant();
+
+setTimeout(() => {
+
+    const champPaquets =
+    document.getElementById(
+        "paquets"
     );
 
-    suivant();
+    if(champPaquets){
+
+        champPaquets.focus();
+        champPaquets.select();
+
+    }
+
+}, 50);
 
 }
 function scannerCodeBarre(){
@@ -420,6 +434,20 @@ function suivant(){
     }
 
     afficherArticle();
+
+    setTimeout(() => {
+
+        const champPaquets =
+        document.getElementById("paquets");
+
+        if(champPaquets){
+
+            champPaquets.focus();
+            champPaquets.select();
+
+        }
+
+    }, 50);
 
 }
 function chercherProduitAssociation(){
