@@ -277,7 +277,170 @@ function valider(){
     suivant();
 
 }
+function scannerCodeBarre(){
 
+    document
+    .getElementById("scannerZone")
+    .style.display = "block";
+
+    const scanner = new Html5Qrcode(
+        "reader"
+    );
+
+    scanner.start(
+
+        {
+            facingMode: "environment"
+        },
+
+        {
+            fps: 10,
+            qrbox: 250
+        },
+
+        (code) => {
+
+            scanner.stop();
+
+            document
+            .getElementById("scannerZone")
+            .style.display = "none";
+
+            rechercherCodeBarre(code);
+
+        }
+
+    );
+
+}
+function rechercherCodeBarre(codeBarre){
+
+    let trouve = null;
+
+    Object.keys(inventaire)
+    .forEach(onglet => {
+
+        inventaire[onglet]
+        .forEach(produit => {
+
+            if(
+                produit.codesBarres &&
+                produit.codesBarres.includes(
+                    codeBarre
+                )
+            ){
+
+                trouve = {
+                    onglet,
+                    produit
+                };
+
+            }
+
+        });
+
+    });
+
+    if(trouve){
+
+        currentTab =
+        trouve.onglet;
+
+        currentIndex =
+        inventaire[
+            trouve.onglet
+        ]
+        .findIndex(
+            p =>
+            p.id ===
+            trouve.produit.id
+        );
+
+        creerOnglets();
+
+        afficherArticle();
+
+        return;
+
+    }
+
+    associerCodeBarre(
+        codeBarre
+    );
+
+}
+function associerCodeBarre(codeBarre){
+
+    const recherche =
+    prompt(
+
+        "Code inconnu :\n\n"
+        + codeBarre +
+        "\n\nProduit ?"
+
+    );
+
+    if(!recherche) return;
+
+    let produitTrouve = null;
+
+    Object.keys(inventaire)
+    .forEach(onglet => {
+
+        inventaire[onglet]
+        .forEach(produit => {
+
+            if(
+
+                produit.article
+                .toLowerCase()
+                .includes(
+                    recherche.toLowerCase()
+                )
+
+            ){
+
+                produitTrouve =
+                produit;
+
+            }
+
+        });
+
+    });
+
+    if(!produitTrouve){
+
+        alert(
+            "Produit introuvable"
+        );
+
+        return;
+
+    }
+
+    if(
+        !produitTrouve.codesBarres
+    ){
+
+        produitTrouve.codesBarres = [];
+
+    }
+
+    produitTrouve
+    .codesBarres
+    .push(codeBarre);
+
+    localStorage.setItem(
+        "inventaireHDLP",
+        JSON.stringify(inventaire)
+    );
+
+    alert(
+        "Code-barres ajouté"
+    );
+
+}
 function suivant(){
 
     if(
