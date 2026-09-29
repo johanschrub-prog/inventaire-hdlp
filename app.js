@@ -242,8 +242,10 @@ Pièces
 </label>
 
 <input
+<input
 id="pieces"
 type="number"
+autofocus
 enterkeyhint="go"
 value="${produit.pieces || ''}"
 onkeydown="if(event.key==='Enter'){
@@ -443,22 +445,20 @@ function suivant(){
         currentIndex <
         inventaire[currentTab].length - 1
     ){
-
         currentIndex++;
-
     }
 
     afficherArticle();
 
     setTimeout(() => {
 
-        const champPaquets =
-        document.getElementById("paquets");
+        const champPieces =
+        document.getElementById("pieces");
 
-        if(champPaquets){
+        if(champPieces){
 
-            champPaquets.focus();
-            champPaquets.select();
+            champPieces.focus();
+            champPieces.select();
 
         }
 
