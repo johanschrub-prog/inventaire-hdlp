@@ -58,7 +58,15 @@ function changerOnglet(cat){
     afficherArticle();
 
 }
+function importerFournisseur(event){
 
+    const file = event.target.files[0];
+
+    if(!file) return;
+
+    alert("Import fournisseur à développer");
+
+}
 function afficherArticle(){
 
     const produit =
