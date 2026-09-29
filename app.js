@@ -62,9 +62,95 @@ function importerFournisseur(event){
 
     const file = event.target.files[0];
 
-    if(!file) return;
+    if(!file){
+        alert("Aucun fichier sélectionné");
+        return;
+    }
 
-    alert("Import fournisseur à développer");
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+
+        const workbook =
+        XLSX.read(
+            e.target.result,
+            {type:"array"}
+        );
+
+        inventaire = {};
+
+        workbook.SheetNames.forEach(nomFeuille => {
+
+            const sheet =
+            workbook.Sheets[nomFeuille];
+
+            const rows =
+            XLSX.utils.sheet_to_json(sheet);
+
+            inventaire[nomFeuille] = [];
+
+            rows.forEach((row,index) => {
+
+                inventaire[nomFeuille].push({
+
+                    id:
+                    crypto.randomUUID(),
+
+                    ordre:
+                    row.ORDRE ||
+                    index + 1,
+
+                    code:
+                    row.NA ||
+                    row.Code ||
+                    row.CODE ||
+                    "",
+
+                    article:
+                    row.ARTICLE ||
+                    row.Article ||
+                    row.article ||
+                    "",
+
+                    codesBarres: [],
+
+                    paquets: 0,
+
+                    pieces: 0
+
+                });
+
+            });
+
+            inventaire[nomFeuille]
+            .sort((a,b) =>
+                a.ordre - b.ordre
+            );
+
+        });
+
+        localStorage.setItem(
+            "inventaireHDLP",
+            JSON.stringify(inventaire)
+        );
+
+        currentTab =
+        Object.keys(inventaire)[0];
+
+        currentIndex = 0;
+
+        creerOnglets();
+
+        afficherArticle();
+
+        alert(
+            Object.keys(inventaire).length +
+            " onglets importés"
+        );
+
+    };
+
+    reader.readAsArrayBuffer(file);
 
 }
 function afficherArticle(){
