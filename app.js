@@ -210,32 +210,47 @@ function afficherArticle(){
         ${produit.article}
         </h3>
 
-        <div>
+       <div style="margin-top:10px">
 
-        Paquets
+<label style="
+display:block;
+font-weight:bold;
+margin-bottom:5px;
+">
+Paquets
+</label>
 
-       <input
 <input
 id="paquets"
 type="number"
 enterkeyhint="next"
-value="${
-    produit.paquets || ""
-}"
+value="${produit.paquets || ''}"
 onkeydown="if(event.key==='Enter'){
 document.getElementById('pieces').focus();
 }">
+
+</div>
+
+<div style="margin-top:15px">
+
+<label style="
+display:block;
+font-weight:bold;
+margin-bottom:5px;
+">
+Pièces
+</label>
 
 <input
 id="pieces"
 type="number"
 enterkeyhint="go"
-value="${
-    produit.pieces || ""
-}"
+value="${produit.pieces || ''}"
 onkeydown="if(event.key==='Enter'){
 valider();
 }">
+
+</div>
             <button onclick="precedent()">
             ◀
             </button>
