@@ -1,1 +1,25 @@
+{
+  "INVENTAIRE DEVANT BAR": [
+    {
+      "id": "1",
+      "ordre": 1,
+      "code": "168",
+      "article": "MOET ET CHANDON",
+      "codesBarres": [],
+      "paquets": 0,
+      "pieces": 0
+    }
+  ],
 
+  "INVENTAIRE ARRIERE BAR": [
+    {
+      "id": "2",
+      "ordre": 1,
+      "code": "564",
+      "article": "JB",
+      "codesBarres": [],
+      "paquets": 0,
+      "pieces": 0
+    }
+  ]
+}
