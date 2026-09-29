@@ -3,7 +3,7 @@ let currentIndex = 0;
 let inventaire = {};
 
 async function charger(){
-alert(typeof XLSX);
+
     const r =
     await fetch("inventaire.json");
 
@@ -179,7 +179,7 @@ function importerFournisseur(event){
 
     reader.readAsArrayBuffer(file);
 
-}
+
 
 }
 function afficherArticle(){
