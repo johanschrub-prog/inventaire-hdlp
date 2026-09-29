@@ -60,93 +60,45 @@ function changerOnglet(cat){
 }
 function importerFournisseur(event){
 
+    alert("ETAPE 1");
+
     const file = event.target.files[0];
 
     if(!file){
-        alert("Aucun fichier sélectionné");
+        alert("AUCUN FICHIER");
         return;
     }
+
+    alert("ETAPE 2 : " + file.name);
 
     const reader = new FileReader();
 
     reader.onload = function(e){
 
-        const workbook =
-        XLSX.read(
-            e.target.result,
-            {type:"array"}
-        );
+        alert("ETAPE 3");
 
-        inventaire = {};
+        try{
 
-        workbook.SheetNames.forEach(nomFeuille => {
-
-            const sheet =
-            workbook.Sheets[nomFeuille];
-
-            const rows =
-            XLSX.utils.sheet_to_json(sheet);
-
-            inventaire[nomFeuille] = [];
-
-            rows.forEach((row,index) => {
-
-                inventaire[nomFeuille].push({
-
-                    id:
-                    crypto.randomUUID(),
-
-                    ordre:
-                    row.ORDRE ||
-                    index + 1,
-
-                    code:
-                    row.NA ||
-                    row.Code ||
-                    row.CODE ||
-                    "",
-
-                    article:
-                    row.ARTICLE ||
-                    row.Article ||
-                    row.article ||
-                    "",
-
-                    codesBarres: [],
-
-                    paquets: 0,
-
-                    pieces: 0
-
-                });
-
-            });
-
-            inventaire[nomFeuille]
-            .sort((a,b) =>
-                a.ordre - b.ordre
+            const workbook =
+            XLSX.read(
+                e.target.result,
+                {type:"array"}
             );
 
-        });
+            alert(
+                "FEUILLES : " +
+                workbook.SheetNames.join(" | ")
+            );
 
-        localStorage.setItem(
-            "inventaireHDLP",
-            JSON.stringify(inventaire)
-        );
+        }
+        catch(err){
 
-        currentTab =
-        Object.keys(inventaire)[0];
+            alert(
+                "ERREUR : " +
+                err.message
+            );
 
-        currentIndex = 0;
-
-        creerOnglets();
-
-        afficherArticle();
-
-        alert(
-            Object.keys(inventaire).length +
-            " onglets importés"
-        );
+        }
 
     };
 
