@@ -214,12 +214,12 @@ function afficherArticle(){
 
         Paquets
 
-        <input
-        id="paquets"
-        type="number"
-        value="${
-            produit.paquets || ""
-        }">
+       <input
+id="paquets"
+type="number"
+enterkeyhint="go"
+value="${produit.paquets || ""}"
+onkeydown="if(event.key==='Enter'){valider();}">
 
         </div>
 
@@ -227,12 +227,12 @@ function afficherArticle(){
 
         Pièces
 
-        <input
-        id="pieces"
-        type="number"
-        value="${
-            produit.pieces || ""
-        }">
+       <input
+id="pieces"
+type="number"
+enterkeyhint="go"
+value="${produit.pieces || ""}"
+onkeydown="if(event.key==='Enter'){valider();}">
 
         </div>
 
