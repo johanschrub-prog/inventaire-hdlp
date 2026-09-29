@@ -86,7 +86,14 @@ id="search"
 placeholder="Recherche"
 oninput="rechercher()">
   
-<button onclick="importerFichier()">
+<input
+type="file"
+id="fichierFournisseur"
+style="display:none"
+onchange="importerFournisseur(event)">
+ 
+<button
+onclick="document.getElementById('fichierFournisseur').click()">
 📥 Import Liste Produit Fournisseur
 </button>
   
