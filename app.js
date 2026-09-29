@@ -276,6 +276,11 @@ function valider(){
         .value || 0
     );
 
+    localStorage.setItem(
+        "inventaireHDLP",
+        JSON.stringify(inventaire)
+    );
+
     suivant();
 
 }
