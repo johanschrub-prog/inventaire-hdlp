@@ -7,8 +7,23 @@ alert(typeof XLSX);
     const r =
     await fetch("inventaire.json");
 
+    const sauvegarde =
+localStorage.getItem(
+"inventaireHDLP"
+);
+
+if(sauvegarde){
+
+    inventaire =
+    JSON.parse(sauvegarde);
+
+}
+else{
+
     inventaire =
     await r.json();
+
+}
 
     currentTab =
     Object.keys(inventaire)[0];
@@ -60,49 +75,111 @@ function changerOnglet(cat){
 }
 function importerFournisseur(event){
 
-    alert("ETAPE 1");
-
     const file = event.target.files[0];
 
-    if(!file){
-        alert("AUCUN FICHIER");
-        return;
-    }
-
-    alert("ETAPE 2 : " + file.name);
+    if(!file) return;
 
     const reader = new FileReader();
 
     reader.onload = function(e){
 
-        alert("ETAPE 3");
+        const workbook =
+        XLSX.read(
+            e.target.result,
+            {type:"array"}
+        );
 
-        try{
+        inventaire = {};
 
-            const workbook =
-            XLSX.read(
-                e.target.result,
-                {type:"array"}
+        workbook.SheetNames.forEach(nomFeuille => {
+
+            const sheet =
+            workbook.Sheets[nomFeuille];
+
+            const rows =
+            XLSX.utils.sheet_to_json(sheet);
+
+            inventaire[nomFeuille] = [];
+
+            rows.forEach(row => {
+
+                inventaire[nomFeuille].push({
+
+                    id: crypto.randomUUID(),
+
+                    ordre:
+                        Number(
+                            row.ORDRE || 9999
+                        ),
+
+                    code:
+                        String(
+                            row.NA || ""
+                        ),
+
+                    article:
+                        String(
+                            row.ARTICLE || ""
+                        ),
+
+                    categorie:
+                        String(
+                            row.CATEGORIE || ""
+                        ),
+
+                    conditionnement:
+                        String(
+                            row.CONDITIONNEMENT || ""
+                        ),
+
+                    codesBarres: [],
+
+                    paquets:
+                        Number(
+                            row.PAQUET || 0
+                        ),
+
+                    pieces:
+                        Number(
+                            row.PIECE || 0
+                        )
+
+                });
+
+            });
+
+            inventaire[nomFeuille]
+            .sort(
+                (a,b)=>
+                a.ordre-b.ordre
             );
 
-            alert(
-                "FEUILLES : " +
-                workbook.SheetNames.join(" | ")
-            );
+        });
 
-        }
-        catch(err){
+        localStorage.setItem(
+            "inventaireHDLP",
+            JSON.stringify(inventaire)
+        );
 
-            alert(
-                "ERREUR : " +
-                err.message
-            );
+        currentTab =
+        Object.keys(inventaire)[0];
 
-        }
+        currentIndex = 0;
+
+        creerOnglets();
+
+        afficherArticle();
+
+        alert(
+            Object.keys(inventaire).length +
+            " onglets importés"
+        );
 
     };
 
     reader.readAsArrayBuffer(file);
+
+}
 
 }
 function afficherArticle(){
