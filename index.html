@@ -35,7 +35,6 @@ padding:8px;
 border:none;
 border-radius:8px;
 cursor:pointer;
-background:#ddd;
 }
 
 .active{
@@ -49,35 +48,23 @@ background:white;
 display:flex;
 gap:10px;
 flex-wrap:wrap;
-position:sticky;
-top:0;
-z-index:1000;
 }
 
 input{
 padding:10px;
-border-radius:8px;
-border:1px solid #ccc;
-}
-
-button{
-padding:10px;
-border:none;
-border-radius:8px;
-cursor:pointer;
-}
-
-.cards{
-padding:10px;
-display:grid;
-gap:10px;
 }
 
 .card{
 background:white;
+margin:10px;
 padding:15px;
 border-radius:12px;
-box-shadow:0 2px 6px rgba(0,0,0,.15);
+}
+
+.nav{
+display:flex;
+gap:10px;
+margin-top:15px;
 }
 
 </style>
@@ -90,26 +77,18 @@ box-shadow:0 2px 6px rgba(0,0,0,.15);
 <h2>INVENTAIRE HDLP</h2>
 </header>
 
-<div class="tabs" id="tabs"></div>
+<div id="tabs" class="tabs"></div>
 
 <div class="toolbar">
 
 <input
 id="search"
-placeholder="Recherche produit"
-oninput="render()">
-
-<button onclick="scannerCodeBarre()">
-📷 Scanner
-</button>
-
-<button onclick="exportExcel()">
-📤 Export Excel
-</button>
+placeholder="Recherche"
+oninput="rechercher()">
 
 </div>
 
-<div id="cards" class="cards"></div>
+<div id="contenu"></div>
 
 <script src="app.js"></script>
 
