@@ -2,6 +2,8 @@ alert("APP JS CHARGE");
 let currentTab = "";
 let currentIndex = 0;
 let inventaire = {};
+let codeBarreAAssocier = "";
+let produitSelectionne = null;
 
 async function charger(){
 
@@ -371,74 +373,34 @@ function rechercherCodeBarre(codeBarre){
 }
 function associerCodeBarre(codeBarre){
 
-    const recherche =
-    prompt(
+    codeBarreAAssocier =
+    codeBarre;
 
-        "Code inconnu :\n\n"
-        + codeBarre +
-        "\n\nProduit ?"
+    document
+    .getElementById("codeInconnu")
+    .innerHTML =
+    `
+    <b>${codeBarre}</b>
+    `;
 
-    );
+    document
+    .getElementById(
+        "fenetreAssociation"
+    )
+    .style.display =
+    "block";
 
-    if(!recherche) return;
+    document
+    .getElementById(
+        "rechercheProduit"
+    )
+    .value = "";
 
-    let produitTrouve = null;
-
-    Object.keys(inventaire)
-    .forEach(onglet => {
-
-        inventaire[onglet]
-        .forEach(produit => {
-
-            if(
-
-                produit.article
-                .toLowerCase()
-                .includes(
-                    recherche.toLowerCase()
-                )
-
-            ){
-
-                produitTrouve =
-                produit;
-
-            }
-
-        });
-
-    });
-
-    if(!produitTrouve){
-
-        alert(
-            "Produit introuvable"
-        );
-
-        return;
-
-    }
-
-    if(
-        !produitTrouve.codesBarres
-    ){
-
-        produitTrouve.codesBarres = [];
-
-    }
-
-    produitTrouve
-    .codesBarres
-    .push(codeBarre);
-
-    localStorage.setItem(
-        "inventaireHDLP",
-        JSON.stringify(inventaire)
-    );
-
-    alert(
-        "Code-barres ajouté"
-    );
+    document
+    .getElementById(
+        "listeProduits"
+    )
+    .innerHTML = "";
 
 }
 function suivant(){
@@ -455,7 +417,65 @@ function suivant(){
     afficherArticle();
 
 }
+function chercherProduitAssociation(){
 
+    const texte =
+    document
+    .getElementById(
+        "rechercheProduit"
+    )
+    .value
+    .toLowerCase();
+
+    let html = "";
+
+    Object.keys(inventaire)
+    .forEach(onglet => {
+
+        inventaire[onglet]
+        .forEach(produit => {
+
+            if(
+
+                produit.article
+                .toLowerCase()
+                .includes(texte)
+
+            ){
+
+                html += `
+                <div
+                style="
+                padding:8px;
+                border-bottom:1px solid #ddd;
+                cursor:pointer;
+                "
+                onclick="
+                selectionProduitAssociation(
+                '${produit.id}'
+                )">
+
+                ${produit.code}
+                -
+                ${produit.article}
+
+                </div>
+                `;
+
+            }
+
+        });
+
+    });
+
+    document
+    .getElementById(
+        "listeProduits"
+    )
+    .innerHTML =
+    html;
+
+}
 function precedent(){
 
     if(currentIndex > 0){
@@ -467,7 +487,56 @@ function precedent(){
     afficherArticle();
 
 }
+function selectionProduitAssociation(id){
 
+    Object.keys(inventaire)
+    .forEach(onglet => {
+
+        inventaire[onglet]
+        .forEach(produit => {
+
+            if(
+                produit.id === id
+            ){
+
+                if(
+                    !produit.codesBarres
+                ){
+
+                    produit.codesBarres = [];
+
+                }
+
+                produit.codesBarres
+                .push(
+                    codeBarreAAssocier
+                );
+
+                localStorage.setItem(
+                    "inventaireHDLP",
+                    JSON.stringify(
+                        inventaire
+                    )
+                );
+
+                alert(
+                    "Code-barres associé"
+                );
+
+            }
+
+        });
+
+    });
+
+    document
+    .getElementById(
+        "fenetreAssociation"
+    )
+    .style.display =
+    "none";
+
+}
 function rechercher(){
 
     const texte =
