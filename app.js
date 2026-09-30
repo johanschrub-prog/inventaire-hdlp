@@ -1,4 +1,4 @@
-alert("APP JS CHARGE20");
+alert("APP JS CHARGE7");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
@@ -72,7 +72,8 @@ function changerOnglet(cat){
     currentTab = cat;
     currentIndex = 0;
 
-    document.getElementById("tabs")
+    document
+    .getElementById("tabs")
     .style.display = "none";
 
     creerOnglets();
