@@ -245,7 +245,6 @@ Pièces
 <input
 id="pieces"
 type="number"
-autofocus
 enterkeyhint="go"
 value="${produit.pieces || ''}"
 onkeydown="if(event.key==='Enter'){
@@ -442,11 +441,12 @@ function suivant(){
         if(champPieces){
 
             champPieces.focus();
-            champPieces.select();
+
+            champPieces.value = "";
 
         }
 
-    }, 50);
+    }, 100);
 
 }
 function chercherProduitAssociation(){
