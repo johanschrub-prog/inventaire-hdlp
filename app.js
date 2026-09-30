@@ -1,4 +1,4 @@
-alert("APP JS CHARGE7");
+alert("APP JS CHARGE3");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
