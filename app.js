@@ -298,7 +298,7 @@ function valider(){
 
 suivant();
 
-
+}
 function scannerCodeBarre(){
 
     document
