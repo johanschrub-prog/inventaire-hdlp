@@ -1,4 +1,4 @@
-alert("APP JS CHARGE8");
+alert("APP JS CHARGE20");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
@@ -399,6 +399,41 @@ function rechercherCodeBarre(codeBarre){
 
     associerCodeBarre(
         codeBarre
+    );
+
+}
+function remiseAZero(){
+
+    if(
+        !confirm(
+            "Remettre toutes les quantités à zéro ?"
+        )
+    ){
+        return;
+    }
+
+    Object.keys(inventaire)
+    .forEach(onglet => {
+
+        inventaire[onglet]
+        .forEach(produit => {
+
+            produit.paquets = 0;
+            produit.pieces = 0;
+
+        });
+
+    });
+
+    localStorage.setItem(
+        "inventaireHDLP",
+        JSON.stringify(inventaire)
+    );
+
+    afficherArticle();
+
+    alert(
+        "Inventaire remis à zéro"
     );
 
 }
