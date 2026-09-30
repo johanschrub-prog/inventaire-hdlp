@@ -1,4 +1,4 @@
-alert("APP JS CHARGE5");
+alert("APP JS CHARGE8");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
@@ -668,5 +668,68 @@ indexAvantRecherche = currentIndex;
     afficherArticle();
 
 }
+function exportExcel(){
 
+    const wb =
+    XLSX.utils.book_new();
+
+    Object.keys(inventaire)
+    .forEach(onglet => {
+
+       const lignes =
+inventaire[onglet]
+.map(produit => ({
+
+    ORDRE:
+    produit.ordre,
+
+    NA:
+    produit.code,
+
+    ARTICLE:
+    produit.article,
+
+    PAQUET:
+    produit.paquets || 0,
+
+    PIECE:
+    produit.pieces || 0
+
+}));
+
+        const ws =
+        XLSX.utils.json_to_sheet(
+            lignes
+        );
+
+        XLSX.utils.book_append_sheet(
+            wb,
+            ws,
+            onglet.substring(0,31)
+        );
+
+    });
+
+    const d =
+    new Date();
+
+    const fichier =
+    "inventaire-hdlp-" +
+    d.getFullYear() +
+    "-" +
+    String(
+        d.getMonth()+1
+    ).padStart(2,"0") +
+    "-" +
+    String(
+        d.getDate()
+    ).padStart(2,"0") +
+    ".xlsx";
+
+    XLSX.writeFile(
+        wb,
+        fichier
+    );
+
+}
 charger();
