@@ -1,4 +1,4 @@
-alert("APP JS CHARGE2");
+alert("APP JS CHARGE1");
 let currentTab = "";
 let currentIndex = 0;
 let inventaire = {};
@@ -576,11 +576,21 @@ function rechercher(){
     .value
     .toLowerCase();
 
-    const index =
-    inventaire[currentTab]
-    .findIndex(
+    if(!texte){
 
-        p =>
+        document
+        .getElementById(
+            "resultatsRecherche"
+        )
+        .innerHTML = "";
+
+        return;
+
+    }
+
+    const resultats =
+    inventaire[currentTab]
+    .filter(p =>
 
         p.article
         .toLowerCase()
@@ -594,14 +604,58 @@ function rechercher(){
 
     );
 
-    if(index >= 0){
+    let html = "";
 
-        currentIndex = index;
+    resultats.forEach(produit => {
 
-        afficherArticle();
+        html += `
+        <div
+        style="
+        padding:10px;
+        border-bottom:1px solid #ddd;
+        cursor:pointer;
+        "
+        onclick="selectionProduit('${produit.id}')">
 
-    }
+        ${produit.code}
+        -
+        ${produit.article}
+
+        </div>
+        `;
+
+    });
+
+    document
+    .getElementById(
+        "resultatsRecherche"
+    )
+    .innerHTML = html;
 
 }
+function selectionProduit(id){
 
+    const index =
+    inventaire[currentTab]
+    .findIndex(
+        p => p.id === id
+    );
+
+    if(index < 0) return;
+
+    currentIndex = index;
+
+    document
+    .getElementById("search")
+    .value = "";
+
+    document
+    .getElementById(
+        "resultatsRecherche"
+    )
+    .innerHTML = "";
+
+    afficherArticle();
+
+}
 charger();
