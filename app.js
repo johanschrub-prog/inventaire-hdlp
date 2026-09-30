@@ -1,4 +1,5 @@
-alert("APP JS CHARGE2");
+alert("APP JS CHARGE10");
+let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
 let inventaire = {};
@@ -293,6 +294,14 @@ function valider(){
     "inventaireHDLP",
     JSON.stringify(inventaire)
 );
+
+if(indexAvantRecherche !== null){
+
+    currentIndex = indexAvantRecherche;
+
+    indexAvantRecherche = null;
+
+}
 
 suivant();
 
@@ -639,7 +648,9 @@ function selectionProduit(id){
     );
 
     if(index < 0) return;
-
+    
+indexAvantRecherche = currentIndex;
+    
     currentIndex = index;
 
     document
