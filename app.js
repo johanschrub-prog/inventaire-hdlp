@@ -190,6 +190,13 @@ function importerFournisseur(event){
 
 
 }
+function afficherOnglets(){
+
+    document
+    .getElementById("tabs")
+    .style.display = "flex";
+
+}
 function afficherArticle(){
 
     const produit =
