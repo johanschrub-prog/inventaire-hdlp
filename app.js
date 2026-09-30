@@ -71,6 +71,9 @@ function changerOnglet(cat){
     currentTab = cat;
     currentIndex = 0;
 
+    document.getElementById("tabs")
+    .style.display = "none";
+
     creerOnglets();
 
     afficherArticle();
@@ -198,17 +201,13 @@ function afficherArticle(){
 
     <div class="card">
 
-        <div>
-        Ordre : ${produit.ordre}
-        </div>
-
-        <h2>
-        ${produit.code}
-        </h2>
-
-        <h3>
-        ${produit.article}
-        </h3>
+       <h3 style="
+margin-top:0;
+font-size:28px;
+text-align:center;
+">
+${produit.article}
+</h3>
 
        <div style="margin-top:10px">
 
