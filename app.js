@@ -241,7 +241,7 @@ margin-bottom:5px;
 Pièces
 </label>
 
-<input
+
 <input
 id="pieces"
 type="number"
@@ -298,23 +298,7 @@ function valider(){
 
 suivant();
 
-setTimeout(() => {
 
-    const champPaquets =
-    document.getElementById(
-        "paquets"
-    );
-
-    if(champPaquets){
-
-        champPaquets.focus();
-        champPaquets.select();
-
-    }
-
-}, 50);
-
-}
 function scannerCodeBarre(){
 
     document
