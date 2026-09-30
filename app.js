@@ -1,4 +1,4 @@
-alert("APP JS CHARGE10");
+alert("APP JS CHARGE5");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
@@ -296,13 +296,17 @@ function valider(){
 );
 
 if(indexAvantRecherche !== null){
-
-    currentIndex = indexAvantRecherche;
-
-    indexAvantRecherche = null;
-
+ 
+currentIndex = indexAvantRecherche;
+ 
+indexAvantRecherche = null;
+ 
+afficherArticle();
+ 
+return;
+ 
 }
-
+ 
 suivant();
 
 }
