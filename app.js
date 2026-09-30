@@ -579,9 +579,7 @@ function rechercher(){
     if(!texte){
 
         document
-        .getElementById(
-            "resultatsRecherche"
-        )
+        .getElementById("resultatsRecherche")
         .innerHTML = "";
 
         return;
@@ -592,12 +590,14 @@ function rechercher(){
     inventaire[currentTab]
     .filter(p =>
 
+        p.article &&
         p.article
         .toLowerCase()
         .includes(texte)
 
         ||
 
+        p.code &&
         p.code
         .toLowerCase()
         .includes(texte)
@@ -618,8 +618,7 @@ function rechercher(){
         onclick="selectionProduit('${produit.id}')">
 
         ${produit.code}
-        -
-        ${produit.article}
+        - ${produit.article}
 
         </div>
         `;
@@ -627,9 +626,7 @@ function rechercher(){
     });
 
     document
-    .getElementById(
-        "resultatsRecherche"
-    )
+    .getElementById("resultatsRecherche")
     .innerHTML = html;
 
 }
@@ -650,12 +647,11 @@ function selectionProduit(id){
     .value = "";
 
     document
-    .getElementById(
-        "resultatsRecherche"
-    )
+    .getElementById("resultatsRecherche")
     .innerHTML = "";
 
     afficherArticle();
 
 }
+
 charger();
