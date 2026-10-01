@@ -79,9 +79,7 @@ function creerOnglets(){
 
     });
 
-    document
-    .getElementById("tabs")
-    .innerHTML = html;
+  
 
 }
 function changerOnglet(cat){
