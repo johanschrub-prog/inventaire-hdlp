@@ -1,4 +1,4 @@
-alert("APP JS CHARGE11");
+alert("APP JS CHARGE9");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
@@ -210,13 +210,33 @@ function afficherArticle(){
 
     <div class="card">
 
-       <h3 style="
-margin-top:0;
-font-size:28px;
+   <div style="
+position:sticky;
+top:0;
+z-index:1000;
+background:white;
+padding:15px;
+margin-bottom:15px;
+border-bottom:2px solid #ddd;
 text-align:center;
 ">
+
+<div style="
+font-size:14px;
+color:#666;
+">
+${produit.code}
+</div>
+
+<div style="
+font-size:30px;
+font-weight:bold;
+color:#000;
+">
 ${produit.article}
-</h3>
+</div>
+
+</div>
 
        <div style="margin-top:10px">
 
@@ -499,10 +519,13 @@ function suivant(){
 
         if(champPieces){
 
-            champPieces.focus();
+           window.scrollTo({
+    top:0,
+    behavior:"smooth"
+});
 
-            champPieces.value = "";
-
+champPieces.focus();
+champPieces.select();
         }
 
     }, 100);
