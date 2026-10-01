@@ -1,4 +1,4 @@
-alert("APP JS CHARGEs");
+alert("APP JS CHARGE");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
@@ -234,7 +234,12 @@ function afficherArticle(){
 <div style="
 position:sticky;
 top:0;
-background:#0a66ff;
+background:${
+currentTab.includes("RCLP")
+? "#fd7e14"
+: "#0a66ff"
+};
+
 color:white;
 padding:15px;
 margin:-15px -15px 15px -15px;
@@ -243,33 +248,23 @@ z-index:1000;
 ">
 
 <div style="
-font-size:14px;
-opacity:0.8;
+font-size:11px;
+font-weight:bold;
+opacity:0.85;
+margin-bottom:8px;
+text-transform:uppercase;
 ">
 ${currentTab}
 </div>
 
 <div style="
-font-size:18px;
+font-size:34px;
 font-weight:bold;
-margin-top:5px;
-">
-${produit.code}
-</div>
-
-<div style="
-font-size:28px;
-font-weight:bold;
-margin-top:5px;
+line-height:1.1;
 ">
 ${produit.article}
 </div>
 
-<div style="
-font-size:14px;
-margin-top:5px;
-">
-Ordre : ${produit.ordre}
 </div>
 
 </div>
