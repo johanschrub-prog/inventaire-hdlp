@@ -1,4 +1,4 @@
-alert("APP JS1");
+alert("APP JS12");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
@@ -824,8 +824,10 @@ inventaire[onglet]
     ORDRE:
     produit.ordre,
 
-    NA:
-    produit.code,
+  NA:
+isNaN(produit.code)
+? produit.code
+: Number(produit.code),
 
     ARTICLE:
     produit.article,
