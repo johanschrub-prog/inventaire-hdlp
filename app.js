@@ -225,12 +225,37 @@ if(modeOnglets){
 }
 function afficherOnglets(){
 
+    modeOnglets = true;
+
+    afficherArticle();
+
+}
+
+function afficherArticle(){
+if(modeOnglets){
+
     document
     .getElementById("tabs")
     .style.display = "flex";
 
+    document
+    .querySelector(".toolbar")
+    .style.display = "none";
+
+    document
+    .getElementById("contenu")
+    .innerHTML = "";
+
+    return;
+
 }
-function afficherArticle(){
+    document
+.querySelector(".toolbar")
+.style.display = "flex";
+
+document
+.getElementById("tabs")
+.style.display = "none";
 
     const produit =
     inventaire[currentTab][currentIndex];
