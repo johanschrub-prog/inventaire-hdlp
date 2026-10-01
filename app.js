@@ -1,4 +1,4 @@
-alert("APP JS CHARGE3");
+alert("APP JS CHARGE");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
@@ -284,19 +284,21 @@ function valider(){
     let produit =
     inventaire[currentTab][currentIndex];
 
-    produit.paquets =
-    parseInt(
-        document
-        .getElementById("paquets")
-        .value || 0
-    );
+  produit.paquets =
+parseFloat(
+    document
+    .getElementById("paquets")
+    .value
+    .replace(",", ".")
+) || 0;
 
-    produit.pieces =
-    parseInt(
-        document
-        .getElementById("pieces")
-        .value || 0
-    );
+produit.pieces =
+parseFloat(
+    document
+    .getElementById("pieces")
+    .value
+    .replace(",", ".")
+) || 0;
 
    localStorage.setItem(
     "inventaireHDLP",
