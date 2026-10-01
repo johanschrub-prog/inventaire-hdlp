@@ -1,4 +1,4 @@
-alert("APP JS CHARGE");
+alert("APP JS CHARGE1");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
@@ -55,31 +55,7 @@ cat.includes("RCLP")
 ? "#fd7e14"
 : "#0a66ff";
 
-html += `
-<button
-class="tab ${
-    cat===currentTab
-    ? "active"
-    : ""
-}"
-style="
-background:${
-    cat===currentTab
-    ? couleurActive
-    : couleurFond
-};
-color:${
-    cat===currentTab
-    ? 'white'
-    : 'black'
-};
-"
-onclick="changerOnglet('${cat}')">
 
-${cat}
-
-</button>
-`;
 
 html += `
 <button
