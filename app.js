@@ -1,4 +1,4 @@
-alert("APP JS12");
+alert("APP JS9");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
@@ -79,7 +79,9 @@ function creerOnglets(){
 
     });
 
-  
+    document
+    .getElementById("tabs")
+    .innerHTML = html;
 
 }
 function changerOnglet(cat){
@@ -208,10 +210,6 @@ function importerFournisseur(event){
 
 }
 function afficherOnglets(){
-
-    document
-    .querySelector("header")
-    .style.display = "block";
 
     document
     .getElementById("tabs")
