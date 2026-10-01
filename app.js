@@ -1,4 +1,4 @@
-alert("APP JS5");
+alert("APP JS");
 let modeOnglets = true;
 let indexAvantRecherche = null;
 let currentTab = "";
