@@ -1,4 +1,4 @@
-alert("APP JS12");
+alert("APP JS");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
@@ -212,6 +212,10 @@ function importerFournisseur(event){
 
 }
 function afficherOnglets(){
+
+    document
+    .querySelector("header")
+    .style.display = "block";
 
     document
     .getElementById("tabs")
