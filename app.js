@@ -1,4 +1,4 @@
-alert("APP JS1");
+alert("APP JS");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
@@ -232,40 +232,31 @@ function afficherArticle(){
 <div class="card">
 
 <div style="
-position:sticky;
-top:0;
-background:${
+text-align:center;
+margin-bottom:5px;
+">
+
+<div style="
+font-size:15px;
+font-weight:bold;
+color:${
 currentTab.includes("RCLP")
 ? "#fd7e14"
 : "#0a66ff"
 };
-
-color:white;
-padding:8px;
-margin:-15px -15px 8px -15px;
-border-radius:12px 12px 0 0;
-z-index:1000;
 ">
 
-<div style="
-font-size:11px;
-font-weight:bold;
-opacity:0.85;
-margin-bottom:8px;
-text-transform:uppercase;
-">
 ${currentTab}
+
 </div>
 
 <div style="
 font-size:34px;
 font-weight:bold;
-line-height:1;
-margin-bottom:0;
-
+margin-top:2px;
 ">
+
 ${produit.article}
-</div>
 
 </div>
 
