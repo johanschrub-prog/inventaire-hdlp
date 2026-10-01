@@ -89,12 +89,6 @@ function changerOnglet(cat){
     currentTab = cat;
     currentIndex = 0;
 
-    document
-    .querySelector("header")
-    .style.display = "none";
-
-
-
     creerOnglets();
 
     afficherArticle();
