@@ -1,4 +1,4 @@
-alert("APP JS CHARGE");
+alert("APP JS CHARGE11");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
@@ -253,6 +253,8 @@ Pièces
 <input
 id="pieces"
 type="number"
+step="0.01"
+inputmode="decimal"
 enterkeyhint="go"
 value="${produit.pieces || ''}"
 onkeydown="if(event.key==='Enter'){
