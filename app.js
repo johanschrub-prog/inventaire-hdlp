@@ -275,8 +275,9 @@ ${produit.article}
 display:flex;
 justify-content:center;
 align-items:flex-start;
-gap:40px;
+gap:25px;
 margin-top:5px;
+margin-bottom:5px;
 ">
 
 
