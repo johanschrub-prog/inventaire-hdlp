@@ -1,4 +1,4 @@
-alert("APP JS1");
+alert("APP JS");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
@@ -345,23 +345,34 @@ valider();
 </div>
 
 <div class="nav" style="
-margin-top:8px;
+display:flex;
 justify-content:center;
+gap:10px;
+margin-top:5px;
+margin-bottom:0;
+padding-bottom:0;
 ">
 
-<button onclick="precedent()">
+<button
+style="height:40px;width:50px"
+onclick="precedent()">
 ◀
 </button>
 
-<button onclick="valider()">
+<button
+style="height:40px;width:60px"
+onclick="valider()">
 ✅
 </button>
 
-<button onclick="suivant()">
+<button
+style="height:40px;width:50px"
+onclick="suivant()">
 ▶
 </button>
 
 </div>
+
 
 </div>
     `;
