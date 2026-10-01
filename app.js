@@ -1,4 +1,4 @@
-alert("APP JS CHARGE");
+alert("APP JS");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
@@ -242,7 +242,7 @@ currentTab.includes("RCLP")
 
 color:white;
 padding:15px;
-margin:-15px -15px 15px -15px;
+margin:-15px -15px 8px -15px;
 border-radius:12px 12px 0 0;
 z-index:1000;
 ">
@@ -260,7 +260,9 @@ ${currentTab}
 <div style="
 font-size:34px;
 font-weight:bold;
-line-height:1.1;
+line-height:1;
+margin-bottom:0;
+
 ">
 ${produit.article}
 </div>
@@ -274,8 +276,9 @@ display:flex;
 justify-content:center;
 align-items:flex-start;
 gap:40px;
-margin-top:20px;
+margin-top:5px;
 ">
+
 
 <div style="
 width:85px;
