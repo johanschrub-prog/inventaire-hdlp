@@ -1,4 +1,4 @@
-alert("APP JS");
+alert("APP JS1");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
