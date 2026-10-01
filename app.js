@@ -260,19 +260,20 @@ Ordre : ${produit.ordre}
 <div style="
 display:flex;
 justify-content:center;
-gap:20px;
-margin-top:15px;
+align-items:flex-start;
+gap:40px;
+margin-top:20px;
 ">
 
-
 <div style="
-width:110px;
+width:85px;
+text-align:center;
 ">
 
 <label style="
 display:block;
 font-weight:bold;
-margin-bottom:5px;
+margin-bottom:8px;
 ">
 Paquets
 </label>
@@ -283,21 +284,27 @@ type="number"
 step="0.01"
 inputmode="decimal"
 enterkeyhint="next"
+style="
+width:80px;
+height:40px;
+font-size:22px;
+text-align:center;
+"
 value="${produit.paquets || ''}"
 onkeydown="if(event.key==='Enter'){
 document.getElementById('pieces').focus();
 }">
-
 </div>
 
 <div style="
-width:110px;
+width:85px;
+text-align:center;
 ">
 
 <label style="
 display:block;
 font-weight:bold;
-margin-bottom:5px;
+margin-bottom:8px;
 ">
 Pièces
 </label>
@@ -308,11 +315,16 @@ type="number"
 step="0.01"
 inputmode="decimal"
 enterkeyhint="go"
+style="
+width:80px;
+height:40px;
+font-size:22px;
+text-align:center;
+"
 value="${produit.pieces || ''}"
 onkeydown="if(event.key==='Enter'){
 valider();
 }">
-
 </div>
 
 </div>
