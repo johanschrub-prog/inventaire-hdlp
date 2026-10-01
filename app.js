@@ -1,4 +1,5 @@
-alert("APP JS8");
+alert("APP JS5");
+let modeOnglets = true;
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
@@ -89,7 +90,14 @@ function changerOnglet(cat){
     currentTab = cat;
     currentIndex = 0;
 
-    creerOnglets();
+    modeOnglets = false;
+
+    afficherArticle();
+
+}
+function retourOnglets(){
+
+    modeOnglets = true;
 
     afficherArticle();
 
@@ -190,7 +198,19 @@ function importerFournisseur(event){
         creerOnglets();
 
         afficherArticle();
+if(modeOnglets){
 
+    document.getElementById("tabs")
+    .style.display = "flex";
+
+    document.getElementById("contenu")
+    .innerHTML = "";
+
+    return;
+
+}
+        document.getElementById("tabs")
+.style.display = "none";
         alert(
             Object.keys(inventaire).length +
             " onglets importés"
@@ -247,7 +267,12 @@ font-size:34px;
 font-weight:bold;
 margin-top:2px;
 ">
+<button
+onclick="retourOnglets()">
 
+⬅ Retour aux onglets
+
+</button>
 ${produit.article}
 
 </div>
