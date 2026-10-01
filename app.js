@@ -1,4 +1,4 @@
-alert("APP JS9");
+alert("APP JS8");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
