@@ -1,4 +1,4 @@
-alert("APP JS");
+alert("APP JS12");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
@@ -91,9 +91,7 @@ function changerOnglet(cat){
     .querySelector("header")
     .style.display = "none";
 
-    document
-    .getElementById("tabs")
-    .style.display = "none";
+
 
     creerOnglets();
 
