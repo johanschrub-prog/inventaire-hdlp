@@ -210,35 +210,21 @@ function afficherArticle(){
 
     <div class="card">
 
-   <div style="
+<div style="
 position:sticky;
 top:0;
-z-index:1000;
-background:white;
+z-index:999;
+background:#0a66ff;
+color:white;
 padding:15px;
-margin-bottom:15px;
-border-bottom:2px solid #ddd;
 text-align:center;
-">
-
-<div style="
-font-size:14px;
-color:#666;
-">
-${produit.code}
-</div>
-
-<div style="
-font-size:30px;
+font-size:28px;
 font-weight:bold;
-color:#000;
 ">
+
 ${produit.article}
-</div>
 
 </div>
-
-       <div style="margin-top:10px">
 
 <label style="
 display:block;
