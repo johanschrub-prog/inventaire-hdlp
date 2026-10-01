@@ -241,7 +241,7 @@ currentTab.includes("RCLP")
 };
 
 color:white;
-padding:15px;
+padding:8px;
 margin:-15px -15px 8px -15px;
 border-radius:12px 12px 0 0;
 z-index:1000;
@@ -344,7 +344,10 @@ valider();
 
 </div>
 
-<div class="nav">
+<div class="nav" style="
+margin-top:8px;
+justify-content:center;
+">
 
 <button onclick="precedent()">
 ◀
