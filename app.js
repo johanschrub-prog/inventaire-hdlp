@@ -1,4 +1,4 @@
-alert("APP JS CHARGE1");
+alert("APP JS CHARGE");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
@@ -45,19 +45,67 @@ function creerOnglets(){
     Object.keys(inventaire)
     .forEach(cat=>{
 
-        html += `
-        <button
-        class="tab ${
-            cat===currentTab
-            ? "active"
-            : ""
-        }"
-        onclick="changerOnglet('${cat}')">
+  const couleurFond =
+cat.includes("RCLP")
+? "#ffe0b2"
+: "#ddd";
 
-        ${cat}
+const couleurActive =
+cat.includes("RCLP")
+? "#fd7e14"
+: "#0a66ff";
 
-        </button>
-        `;
+html += `
+<button
+class="tab ${
+    cat===currentTab
+    ? "active"
+    : ""
+}"
+style="
+background:${
+    cat===currentTab
+    ? couleurActive
+    : couleurFond
+};
+color:${
+    cat===currentTab
+    ? 'white'
+    : 'black'
+};
+"
+onclick="changerOnglet('${cat}')">
+
+${cat}
+
+</button>
+`;
+
+html += `
+<button
+class="tab ${
+    cat===currentTab
+    ? "active"
+    : ""
+}"
+style="
+background:${
+cat===currentTab
+? couleur
+: "#ddd"
+};
+color:${
+cat===currentTab
+? "white"
+: "black"
+};
+"
+onclick="changerOnglet('${cat}')">
+
+${cat}
+
+</button>
+`;
 
     });
 
