@@ -1,4 +1,4 @@
-alert("APP JS CHARGE6");
+alert("APP JS CHARGE4");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
@@ -71,6 +71,10 @@ function changerOnglet(cat){
 
     currentTab = cat;
     currentIndex = 0;
+
+    document
+    .querySelector("header h2")
+    .innerText = cat;
 
     document
     .getElementById("tabs")
@@ -208,23 +212,58 @@ function afficherArticle(){
     .getElementById("contenu")
     .innerHTML = `
 
-    <div class="card">
+<div class="card">
 
 <div style="
 position:sticky;
 top:0;
-z-index:999;
 background:#0a66ff;
 color:white;
 padding:15px;
-text-align:center;
-font-size:28px;
-font-weight:bold;
+margin:-15px -15px 15px -15px;
+border-radius:12px 12px 0 0;
+z-index:1000;
 ">
 
+<div style="
+font-size:14px;
+opacity:0.8;
+">
+${currentTab}
+</div>
+
+<div style="
+font-size:18px;
+font-weight:bold;
+margin-top:5px;
+">
+${produit.code}
+</div>
+
+<div style="
+font-size:28px;
+font-weight:bold;
+margin-top:5px;
+">
 ${produit.article}
+</div>
+
+<div style="
+font-size:14px;
+margin-top:5px;
+">
+Ordre : ${produit.ordre}
+</div>
 
 </div>
+
+<div style="
+display:flex;
+gap:15px;
+margin-top:15px;
+">
+
+<div style="flex:1">
 
 <label style="
 display:block;
@@ -237,6 +276,8 @@ Paquets
 <input
 id="paquets"
 type="number"
+step="0.01"
+inputmode="decimal"
 enterkeyhint="next"
 value="${produit.paquets || ''}"
 onkeydown="if(event.key==='Enter'){
@@ -245,7 +286,7 @@ document.getElementById('pieces').focus();
 
 </div>
 
-<div style="margin-top:15px">
+<div style="flex:1">
 
 <label style="
 display:block;
@@ -254,7 +295,6 @@ margin-bottom:5px;
 ">
 Pièces
 </label>
-
 
 <input
 id="pieces"
@@ -268,21 +308,26 @@ valider();
 }">
 
 </div>
-            <button onclick="precedent()">
-            ◀
-            </button>
 
-            <button onclick="valider()">
-            ✅
-            </button>
+</div>
 
-            <button onclick="suivant()">
-            ▶
-            </button>
+<div class="nav">
 
-        </div>
+<button onclick="precedent()">
+◀
+</button>
 
-    </div>
+<button onclick="valider()">
+✅
+</button>
+
+<button onclick="suivant()">
+▶
+</button>
+
+</div>
+
+</div>
     `;
 
 }
@@ -500,21 +545,22 @@ function suivant(){
 
     setTimeout(() => {
 
+        window.scrollTo({
+            top:0,
+            behavior:"instant"
+        });
+
         const champPieces =
         document.getElementById("pieces");
 
         if(champPieces){
 
-           window.scrollTo({
-    top:0,
-    behavior:"smooth"
-});
+            champPieces.focus();
+            champPieces.select();
 
-champPieces.focus();
-champPieces.select();
         }
 
-    }, 100);
+    }, 50);
 
 }
 function chercherProduitAssociation(){
