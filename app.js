@@ -1,4 +1,4 @@
-alert("APP JS CHARGE4");
+alert("APP JS CHARGE");
 let indexAvantRecherche = null;
 let currentTab = "";
 let currentIndex = 0;
@@ -259,11 +259,15 @@ Ordre : ${produit.ordre}
 
 <div style="
 display:flex;
-gap:15px;
+justify-content:center;
+gap:20px;
 margin-top:15px;
 ">
 
-<div style="flex:1">
+
+<div style="
+width:110px;
+">
 
 <label style="
 display:block;
@@ -286,7 +290,9 @@ document.getElementById('pieces').focus();
 
 </div>
 
-<div style="flex:1">
+<div style="
+width:110px;
+">
 
 <label style="
 display:block;
