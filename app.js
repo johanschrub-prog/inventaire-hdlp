@@ -1,4 +1,4 @@
-alert("APP JS");
+alert("APP JS1");
 let modeOnglets = true;
 let indexAvantRecherche = null;
 let currentTab = "";
@@ -292,12 +292,7 @@ font-size:34px;
 font-weight:bold;
 margin-top:2px;
 ">
-<button
-onclick="retourOnglets()">
 
-⬅ Retour aux onglets
-
-</button>
 ${produit.article}
 
 </div>
