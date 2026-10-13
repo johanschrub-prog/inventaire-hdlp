@@ -122,7 +122,8 @@ function importerFournisseur(event){
 
      workbook.SheetNames.forEach(nomFeuille => {
 
-    if (nomFeuille.toLowerCase() === "Feuil1") return;
+   if (nomFeuille.trim().toUpperCase() === "FEUIL1") return;
+
 
     const sheet =
     workbook.Sheets[nomFeuille];
