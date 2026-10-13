@@ -120,19 +120,22 @@ function importerFournisseur(event){
 
         inventaire = {};
 
-        workbook.SheetNames.forEach(nomFeuille => {
+     workbook.SheetNames.forEach(nomFeuille => {
 
-            const sheet =
-            workbook.Sheets[nomFeuille];
+    if (nomFeuille.toLowerCase() === "feuil1") return;
 
-            const rows =
-            XLSX.utils.sheet_to_json(sheet);
+    const sheet =
+    workbook.Sheets[nomFeuille];
 
-            inventaire[nomFeuille] = [];
+    const rows =
+    XLSX.utils.sheet_to_json(sheet);
 
-            rows.forEach(row => {
+    inventaire[nomFeuille] = [];
 
-                inventaire[nomFeuille].push({
+    rows.forEach(row => {
+
+        inventaire[nomFeuille].push({
+
 
                     id: crypto.randomUUID(),
 
