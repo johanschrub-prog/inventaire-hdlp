@@ -10,8 +10,29 @@
 <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 
 <style>
+#btnAccueil{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+
+    width:55px;
+    height:55px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#1976d2;
+    color:white;
+
+    font-size:24px;
+    cursor:pointer;
+
+    z-index:9999;
+    box-shadow:0 4px 12px rgba(0,0,0,.3);
+}
 
 body{
+
 font-family:Segoe UI,sans-serif;
 margin:0;
 background:#f5f6f8;
@@ -192,5 +213,12 @@ overflow:auto;
 
 <script src="app.js"></script>
 
-</body>
+<body>
+
+<button id="btnAccueil"
+onclick="location.href='https://johanschrub-prog.github.io/hotel-paix-hub/'">
+🏠
+</button>
+
+<div id="tabs" class="tabs"></div>
 </html>
