@@ -119,6 +119,7 @@ function importerFournisseur(event){
         );
 
         inventaire = {};
+console.log(workbook.SheetNames);
 
      workbook.SheetNames.forEach(nomFeuille => {
 
