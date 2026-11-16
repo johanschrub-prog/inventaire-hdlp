@@ -95,25 +95,43 @@ function importerFournisseur(event){
         inventaire = {};
         
         workbook.SheetNames.forEach(nomFeuille => {
+            // Ignore la feuille vide ou technique "Feuil1"
+            if (nomFeuille.trim().toUpperCase() === "FEUIL1") return;
+            
             const sheet = workbook.Sheets[nomFeuille];
             const rows = XLSX.utils.sheet_to_json(sheet);
             if(rows.length === 0) return;
             
             inventaire[nomFeuille] = [];
             rows.forEach(row => {
+                // Ignore les lignes sans article
+                const articleNom = String(row.ARTICLE || row.Article || "").trim();
+                if(!articleNom) return;
+
                 inventaire[nomFeuille].push({
                     id: crypto.randomUUID(),
                     ordre: Number(row.ORDRE || row.Ordre || 9999),
                     code: String(row.NA || row.Code || row.CODE || ""),
-                    article: String(row.ARTICLE || row.Article || ""),
+                    article: articleNom,
                     categorie: String(row.CATEGORIE || row.Categorie || ""),
-                    conditionnement: String(row.CONDITIONNEMENT || row.Conditionnement || ""),
-                    codesBarres: [],
+                    conditionnement: String(row.CONTIONNEMENT || row.Conditionnement || row.CONDITIONNEMENT || ""),
+                    codesBarres: row.codesBarres || [],
                     paquets: Number(row.PAQUET || row.Paquet || 0),
                     pieces: Number(row.PIECE || row.Piece || 0)
                 });
             });
-            inventaire[nomFeuille].sort((a,b) => a.ordre - b.ordre);
+
+            // Tri sécurisé même si ORDRE est vide ou NaN
+            inventaire[nomFeuille].sort((a, b) => {
+                let ordreA = isNaN(a.ordre) ? 9999 : a.ordre;
+                let ordreB = isNaN(b.ordre) ? 9999 : b.ordre;
+                return ordreA - ordreB;
+            });
+
+            // Si la feuille se retrouve vide après filtrage, on la supprime
+            if(inventaire[nomFeuille].length === 0){
+                delete inventaire[nomFeuille];
+            }
         });
         
         localStorage.setItem("inventaireHDLP", JSON.stringify(inventaire));
@@ -128,7 +146,7 @@ function importerFournisseur(event){
         const tabsEl = document.getElementById("tabs");
         if(tabsEl) tabsEl.style.display = modeOnglets ? "flex" : "none";
         
-        alert(keys.length + " onglets importés avec succès ✅");
+        alert(keys.length + " onglets d'inventaire importés avec succès ✅");
     };
     reader.readAsArrayBuffer(file);
 }
@@ -397,4 +415,3 @@ function exportExcel(){
 }
 
 charger();
-```[cite: 4]
